@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.gms.google.services)
 }
 
 android {
@@ -62,6 +63,14 @@ dependencies {
     // dagger and hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+
+    // Import the Firebase BoM
+    implementation(platform(libs.firebase.bom))
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation(libs.firebase.analytics)
+
+
 }
 
 // Allow references to generated code

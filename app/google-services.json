@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "363520983927",
+    "project_id": "healthline-fec71",
+    "storage_bucket": "healthline-fec71.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363520983927:android:cd2a1f64663a5b7cb85772",
+        "android_client_info": {
+          "package_name": "com.techtribeservices.helathline"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFrYUkvxQ3t_hTI26jEzojdJ2ajh1ZSDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
