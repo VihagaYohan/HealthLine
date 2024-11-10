@@ -1,4 +1,4 @@
-package com.techtribeservices.helathline
+package com.techtribeservices.helathline.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
