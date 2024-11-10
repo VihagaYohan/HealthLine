@@ -63,6 +63,7 @@ dependencies {
     // dagger and hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // Import the Firebase BoM
     implementation(platform(libs.firebase.bom))
@@ -70,6 +71,7 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore)
+
 }
 
 // Allow references to generated code
