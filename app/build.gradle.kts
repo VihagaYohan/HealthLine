@@ -72,6 +72,9 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore)
 
+    // Gson
+    implementation(libs.gson)
+
 }
 
 // Allow references to generated code
