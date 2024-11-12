@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.techtribeservices.helathline.data.model.Doctor
 import com.techtribeservices.helathline.data.model.Speciality
 import com.techtribeservices.helathline.presentation.viewModels.HomeViewModel
 
@@ -34,7 +35,10 @@ fun ListOfSpecialities(
     modifier: Modifier = Modifier,
     data: List<Speciality>,
 ) {
-    Text(text = "list of specialities:")
+    //Text(text = "list of specialities:")
+
+    val doctor = Doctor("Doe","John", "Smith","Dr")
+    Text(text = doctor.fullName())
     LazyColumn(modifier = modifier) {
         items(data.size) {
             Text(text = data[it].title)
