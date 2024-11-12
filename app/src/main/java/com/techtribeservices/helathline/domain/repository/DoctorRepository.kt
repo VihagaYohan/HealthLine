@@ -2,6 +2,7 @@ package com.techtribeservices.helathline.domain.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.techtribeservices.helathline.data.model.Speciality
+import com.techtribeservices.helathline.utils.Collections
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -14,7 +15,7 @@ class DoctorRepository @Inject constructor(
     suspend fun getAllSpecialities(): MutableList<Speciality> {
         val specialityList: MutableList<Speciality> = mutableListOf()
 
-        firestore.collection("speciality")
+        firestore.collection(Collections.SPECIALITIES)
             .get()
             .await()
             .map {
