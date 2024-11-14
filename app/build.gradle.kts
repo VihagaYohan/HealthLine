@@ -75,6 +75,15 @@ dependencies {
     // Gson
     implementation(libs.gson)
 
+    // coil
+    implementation(libs.coil.compose)
+
+    // constraint layout
+    implementation(libs.androidx.constraintlayout.compose)
+
+    // okHttp
+    implementation(libs.coil.network.okhttp)
+
 }
 
 // Allow references to generated code
