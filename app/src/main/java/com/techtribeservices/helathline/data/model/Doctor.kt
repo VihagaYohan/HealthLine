@@ -8,7 +8,7 @@ data class Doctor(
     override val firstName: String = "",
     override val lastName: String = "",
     private val title: String = "",
-    val speciality: Speciality = Speciality("", Timestamp.now(), UserRoles.ADMIN),
+    val speciality: Speciality, //= Speciality("", Timestamp.now(), UserRoles.ADMIN),
     val profileImage: String = "",
 ) : Person(surname, firstName, lastName) {
 

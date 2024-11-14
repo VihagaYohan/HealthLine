@@ -21,8 +21,7 @@ class HomeViewModel @Inject constructor(
     val state = _uiState as StateFlow<List<Speciality>>
 
     init {
-        //fetchSpecialities()
-        seedDB()
+        fetchSpecialities()
     }
 
     fun fetchSpecialities() {
