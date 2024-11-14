@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">HelathLine</string>
+
+    <string name="onboarding_1_title">Find Specialists</string>
+    <string name="onboarding_2_title">Book Appointments</string>
+    <string name="onboarding_3_title">Reminder</string>
+
+    <string name="onboarding_1_description">Browse through a wide range of medical specialists for every health need.</string>
+    <string name="onboarding_2_description">Schedule appointments with doctors easily from the comfort of your home.</string>
+    <string name="onboarding_3_description">Receive reminders for upcoming appointments and never miss a visit.</string>
+
 </resources>

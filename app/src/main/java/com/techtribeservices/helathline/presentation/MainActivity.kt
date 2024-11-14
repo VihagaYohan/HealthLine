@@ -10,7 +10,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.techtribeservices.helathline.data.model.Onboarding
 import com.techtribeservices.helathline.presentation.pages.HomePage
+import com.techtribeservices.helathline.presentation.pages.Onboarding.OnboardingPage
+
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +27,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             HelathLineTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomePage(modifier = Modifier.padding(innerPadding))
+//                    HomePage(modifier = Modifier.padding(innerPadding))
+                    OnboardingPage(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
