@@ -37,8 +37,8 @@ fun ListOfSpecialities(
 ) {
     //Text(text = "list of specialities:")
 
-    val doctor = Doctor("Doe","John", "Smith","Dr")
-    Text(text = doctor.fullName())
+    //val doctor = Doctor("Doe","John", "Smith","Dr")
+    //Text(text = doctor.fullName())
     LazyColumn(modifier = modifier) {
         items(data.size) {
             Text(text = data[it].title)
