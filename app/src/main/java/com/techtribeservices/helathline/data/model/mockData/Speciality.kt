@@ -1,42 +1,43 @@
 package com.techtribeservices.helathline.data.model.mockData
 
 import com.google.firebase.Timestamp
+import com.techtribeservices.helathline.R
 import com.techtribeservices.helathline.data.model.Speciality
 import com.techtribeservices.helathline.data.model.enums.UserRoles
 
 val specialityList: List<Speciality> = listOf(
     Speciality(
+        "",
         "Cardiology",
+        iconId = R.drawable.heartbeat_solid,
         Timestamp.now(),
         UserRoles.ADMIN
     ),
     Speciality(
-        "Dermatology",
+        "",
+        "Eye Surgeon",
+        iconId = R.drawable.eye_solid,
         Timestamp.now(),
         UserRoles.ADMIN
     ),
     Speciality(
-        "Endocrinology",
+        "",
+        "Pediatrician",
+        iconId = R.drawable.baby_solid,
         Timestamp.now(),
         UserRoles.ADMIN
     ),
     Speciality(
-        "Gastroenterology",
+        "",
+        "Neurologist",
+        iconId = R.drawable.brain_solid,
         Timestamp.now(),
         UserRoles.ADMIN
     ),
     Speciality(
-        "Hematology",
-        Timestamp.now(),
-        UserRoles.ADMIN
-    ),
-    Speciality(
-        "Infectious Disease",
-        Timestamp.now(),
-        UserRoles.ADMIN
-    ),
-    Speciality(
-        "Neurology",
+        "",
+        title ="Dentist",
+        iconId = R.drawable.tooth_solid,
         Timestamp.now(),
         UserRoles.ADMIN
     ),
