@@ -84,6 +84,9 @@ dependencies {
     // okHttp
     implementation(libs.coil.network.okhttp)
 
+    // adaptive layout
+    implementation(libs.androidx.material3.adaptive.navigation.suite)
+
 }
 
 // Allow references to generated code
