@@ -9,4 +9,9 @@
     <string name="onboarding_2_description">Schedule appointments with doctors easily from the comfort of your home.</string>
     <string name="onboarding_3_description">Receive reminders for upcoming appointments and never miss a visit.</string>
 
+    <string name="home">Home</string>
+    <string name="appointment">Appointment</string>
+    <string name="messages">Messages</string>
+    <string name="settings">Settings</string>
+
 </resources>
