@@ -7,10 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteColors
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.runtime.Composable
@@ -24,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.techtribeservices.helathline.navigation.AppDestinations
-import com.techtribeservices.helathline.presentation.pages.Appointment.AppointmentPage
+import com.techtribeservices.helathline.presentation.pages.authentication.RegisterPage
 import com.techtribeservices.helathline.presentation.pages.Home.HomePage
 import com.techtribeservices.helathline.presentation.pages.Messages.MessagesPage
 import com.techtribeservices.helathline.presentation.pages.Settings.SettingsPage
@@ -48,7 +46,9 @@ class MainActivity : ComponentActivity() {
                     selectedIconColor = MaterialTheme.colorScheme.primary,
                     selectedTextColor = MaterialTheme.colorScheme.primary,
                     indicatorColor = MaterialTheme.colorScheme.primaryContainer,
-                    unselectedIconColor = if (isSystemInDarkTheme()) Color.White.copy(alpha = 0.8f) else Color.Gray.copy(alpha = 0.7f)
+                    unselectedIconColor = if (isSystemInDarkTheme()) Color.White.copy(alpha = 0.8f) else Color.Gray.copy(
+                        alpha = 0.7f
+                    )
                 )
             )
 
@@ -56,7 +56,6 @@ class MainActivity : ComponentActivity() {
 //                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    OnboardingPage(modifier = Modifier.padding(innerPadding))
 //                }
-
 
 
                 NavigationSuiteScaffold(
@@ -93,7 +92,7 @@ class MainActivity : ComponentActivity() {
                     // navigation handles here
                     when (currentDestination) {
                         AppDestinations.Home -> HomePage()
-                        AppDestinations.Appointment -> AppointmentPage()
+                        AppDestinations.Appointment -> RegisterPage()
                         AppDestinations.Messages -> MessagesPage()
                         AppDestinations.Settings -> SettingsPage()
                     }
