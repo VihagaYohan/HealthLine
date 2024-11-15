@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
                     selectedIconColor = MaterialTheme.colorScheme.primary,
                     selectedTextColor = MaterialTheme.colorScheme.primary,
                     indicatorColor = MaterialTheme.colorScheme.primaryContainer,
-                    unselectedIconColor = if (isSystemInDarkTheme()) Color.White else Color.Gray
+                    unselectedIconColor = if (isSystemInDarkTheme()) Color.White else Color.Gray.copy(alpha = 0.7f)
                 )
             )
 
