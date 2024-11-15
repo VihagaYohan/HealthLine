@@ -87,6 +87,9 @@ dependencies {
     // adaptive layout
     implementation(libs.androidx.material3.adaptive.navigation.suite)
 
+    // navigation
+    implementation(libs.androidx.navigation.compose)
+
 }
 
 // Allow references to generated code

@@ -1,4 +1,4 @@
-package com.techtribeservices.helathline.presentation.pages.authentication
+package com.techtribeservices.helathline.presentation.pages.Authentication
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,10 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 
 @Composable
-fun ForgotPasswordPage() {
+fun ForgotPasswordPage(
+    navController: NavController
+) {
     Scaffold { innerPadding ->
         Column(modifier = Modifier
             .padding(innerPadding),
@@ -29,6 +33,6 @@ fun ForgotPasswordPage() {
 @Composable
 fun ForgotPasswordPagePreview() {
     HelathLineTheme {
-        ForgotPasswordPage()
+        ForgotPasswordPage(navController = rememberNavController())
     }
 }

@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.techtribeservices.helathline.presentation.pages.authentication.RegisterPage
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 
 @Composable
