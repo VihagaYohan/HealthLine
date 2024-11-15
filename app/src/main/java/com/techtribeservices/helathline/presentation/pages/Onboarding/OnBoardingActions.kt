@@ -23,11 +23,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.techtribeservices.helathline.navigation.Screen
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 
 @Composable
 fun OnboardingActions(
     currentPage: Int,
+    navController: NavController,
+    onBackClick:() -> Unit = {},
+    onProceedClick:() -> Unit = {}
 ) {
     Row(
         modifier = Modifier
@@ -42,7 +48,9 @@ fun OnboardingActions(
             contentAlignment = Alignment.Center
         ) {
             if (currentPage == 1 || currentPage == 2) {
-                TextButton(onClick = {}) {
+                TextButton(onClick = {
+                   onBackClick()
+                }) {
                     Text(text = "Back")
                 }
             }
@@ -62,7 +70,13 @@ fun OnboardingActions(
                 .weight(1f),
             contentAlignment = Alignment.Center
         ) {
-            Button(onClick = {}) {
+            Button(onClick = {
+                if(currentPage == 2) {
+                    navController.navigate(Screen.LoginScreen.route)
+                }else {
+                    onProceedClick()
+                }
+            }) {
                 Text(text = if (currentPage == 2) "Done" else "Next")
             }
         }
@@ -117,6 +131,6 @@ fun PageIndicator(currentPage: Int) {
 @Composable
 fun OnboardingActionsPreview() {
     HelathLineTheme {
-        OnboardingActions(currentPage = 1)
+        OnboardingActions(currentPage = 1, navController = rememberNavController())
     }
 }
