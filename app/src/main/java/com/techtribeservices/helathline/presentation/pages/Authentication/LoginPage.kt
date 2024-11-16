@@ -3,6 +3,7 @@ package com.techtribeservices.helathline.presentation.pages.Authentication
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.techtribeservices.helathline.navigation.graph.AuthScreen
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 
 @Composable
@@ -25,6 +27,11 @@ fun LoginPage(
             Text(
                 text = "Login page"
             )
+            Button(onClick = {
+                navController.navigate(AuthScreen.register.route)
+            }) {
+                Text(text = "Go to register")
+            }
         }
     }
 }

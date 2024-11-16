@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.techtribeservices.helathline.navigation.Screen
+//import com.techtribeservices.helathline.navigation.Screen
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 
 @Composable
@@ -72,7 +72,7 @@ fun OnboardingActions(
         ) {
             Button(onClick = {
                 if(currentPage == 2) {
-                    navController.navigate(Screen.LoginScreen.route)
+                    //navController.navigate(Screen.AppScreen.route)
                 }else {
                     onProceedClick()
                 }
