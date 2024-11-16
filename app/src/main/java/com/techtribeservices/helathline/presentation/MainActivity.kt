@@ -15,8 +15,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.techtribeservices.helathline.navigation.AppDestinations
-import com.techtribeservices.helathline.navigation.NavigationController
+import com.techtribeservices.helathline.navigation.graph.RootNavigationGraph
 import com.techtribeservices.helathline.presentation.pages.Home.HomePage
 
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
@@ -29,9 +28,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            var currentDestination by rememberSaveable {
-                mutableStateOf(AppDestinations.Home)
-            }
+
 
             val navigationSuiteItemColors = NavigationSuiteDefaults.itemColors(
                 navigationBarItemColors = NavigationBarItemDefaults.colors(
@@ -45,11 +42,12 @@ class MainActivity : ComponentActivity() {
             )
 
             HelathLineTheme {
+                RootNavigationGraph()
 //                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    OnboardingPage(modifier = Modifier.padding(innerPadding))
 //                }
 
-                NavigationController()
+
 
 
 //                NavigationSuiteScaffold(
@@ -101,6 +99,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     HelathLineTheme {
-        HomePage()
+        //HomePage(navController = rememberSaveable())
     }
 }
