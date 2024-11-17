@@ -12,8 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.techtribeservices.helathline.navigation.graph.AuthScreen
-import com.techtribeservices.helathline.navigation.graph.Graph
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 
 @Composable
@@ -28,15 +26,7 @@ fun ForgotPasswordPage(
             Text(
                 text = "Forgot password page"
             )
-            Button(onClick = {
-                navController.navigate(Graph.MAIN){
-                    popUpTo(AuthScreen.login.route){
-                        inclusive = true
-                    }
-                }
-            }) {
-                Text(text = "Go to main")
-            }
+
         }
     }
 }

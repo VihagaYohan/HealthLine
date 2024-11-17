@@ -1,25 +1,34 @@
 package com.techtribeservices.helathline.presentation
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBarItemDefaults
-import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaults
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.techtribeservices.helathline.navigation.graph.RootNavigationGraph
-import com.techtribeservices.helathline.presentation.pages.Home.HomePage
-
+import androidx.navigation.NavController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
+import androidx.navigation.toRoute
+import com.techtribeservices.helathline.navigation.RootNavigation
+import com.techtribeservices.helathline.navigation.destinations.Destinations
+import com.techtribeservices.helathline.navigation.graph.MainGraph
+import com.techtribeservices.helathline.presentation.pages.MainPage
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.serialization.json.Json
+import kotlin.reflect.typeOf
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -28,77 +37,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
-
-            val navigationSuiteItemColors = NavigationSuiteDefaults.itemColors(
-                navigationBarItemColors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.primary,
-                    selectedTextColor = MaterialTheme.colorScheme.primary,
-                    indicatorColor = MaterialTheme.colorScheme.primaryContainer,
-                    unselectedIconColor = if (isSystemInDarkTheme()) Color.White.copy(alpha = 0.8f) else Color.Gray.copy(
-                        alpha = 0.7f
-                    )
-                )
-            )
-
             HelathLineTheme {
-                RootNavigationGraph()
-//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    OnboardingPage(modifier = Modifier.padding(innerPadding))
-//                }
-
-
-
-
-//                NavigationSuiteScaffold(
-//                    containerColor = MaterialTheme.colorScheme.background,
-//                    navigationSuiteColors = NavigationSuiteDefaults.colors(
-//                        navigationBarContainerColor = MaterialTheme.colorScheme.background,
-//                        navigationRailContainerColor = MaterialTheme.colorScheme.background
-//                    ),
-//                    navigationSuiteItems = {
-//                        AppDestinations.entries.forEach { it ->
-//                            item(
-//                                icon = {
-//                                    Icon(
-//                                        painter = painterResource(it.icon),
-//                                        contentDescription = stringResource(it.label)
-//                                    )
-//                                },
-//                                label = {
-//                                    Text(
-//                                        stringResource(it.label),
-//                                        style = MaterialTheme.typography.labelMedium.copy(
-//                                            fontWeight = FontWeight.Normal
-//                                        )
-//                                    )
-//                                },
-//                                selected = it == currentDestination,
-//                                onClick = { currentDestination = it },
-//                                alwaysShowLabel = false,
-//                                colors = navigationSuiteItemColors
-//                            )
-//                        }
-//                    }
-//                ) {
-//                    // navigation handles here
-//                    when (currentDestination) {
-//                        AppDestinations.Home -> HomePage()
-//                        AppDestinations.Appointment -> RegisterPage()
-//                        AppDestinations.Messages -> MessagesPage()
-//                        AppDestinations.Settings -> SettingsPage()
-//                    }
-//                }
+//                RootNavigation()
+                MainPage(navController = rememberNavController())
             }
         }
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun MainActivityPreview() {
     HelathLineTheme {
-        //HomePage(navController = rememberSaveable())
+        RootNavigation()
     }
 }
