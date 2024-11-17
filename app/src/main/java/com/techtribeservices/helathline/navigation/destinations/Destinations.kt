@@ -1,8 +1,13 @@
 package com.techtribeservices.helathline.navigation.destinations
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
 sealed class Destinations {
+    @Serializable
+    data object Onboarding: Destinations()
+
     @Serializable
     data object Login: Destinations()
 
@@ -10,11 +15,5 @@ sealed class Destinations {
     data object Register: Destinations()
 
     @Serializable
-    data class Profile(val name: String): Destinations()
-
-    @Serializable
-    data object FriendsList: Destinations()
-
-    @Serializable
-    data class ProfileData(val name:String, val age:Int): Destinations()
+    data object MainPage: Destinations()
 }

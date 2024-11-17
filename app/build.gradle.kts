@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.gms.google.services)
     alias(libs.plugins.kotlinx.serialization)
+    id("kotlin-parcelize")
 //    id("kotlin-parcelize")
 }
 
