@@ -5,4 +5,6 @@ plugins {
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.dagger.hilt) apply false
     alias(libs.plugins.gms.google.services) apply false
+    kotlin("jvm") version "2.0.20"
+    alias(libs.plugins.kotlinx.serialization) apply false
 }
