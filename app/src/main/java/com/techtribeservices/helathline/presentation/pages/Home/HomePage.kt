@@ -1,5 +1,8 @@
 package com.techtribeservices.helathline.presentation.pages.Home
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
@@ -7,12 +10,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.techtribeservices.helathline.data.model.Speciality
 import com.techtribeservices.helathline.presentation.viewModels.HomeViewModel
 
 @Composable
 fun HomePage(
+    navController: NavController,
     modifier: Modifier = Modifier,
 ) {
     val viewModel: HomeViewModel = hiltViewModel()
@@ -21,10 +28,17 @@ fun HomePage(
     Scaffold(
         modifier = modifier
     ) { innerPadding ->
-        ListOfSpecialities(
-            modifier = Modifier.padding(innerPadding),
-            data = uiState.value
-        )
+        val modifier = Modifier.padding(innerPadding)
+
+        Column(
+            modifier = modifier
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = "Home page")
+        }
+
     }
 }
 
@@ -33,10 +47,6 @@ fun ListOfSpecialities(
     modifier: Modifier = Modifier,
     data: List<Speciality>,
 ) {
-    //Text(text = "list of specialities:")
-
-    //val doctor = Doctor("Doe","John", "Smith","Dr")
-    //Text(text = doctor.fullName())
     LazyColumn(modifier = modifier) {
         items(data.size) {
             Text(text = data[it].title)

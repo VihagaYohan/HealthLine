@@ -2,7 +2,9 @@ package com.techtribeservices.helathline.presentation.pages.Authentication
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.techtribeservices.helathline.navigation.graph.MainGraph
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 
 @Composable
@@ -19,12 +22,19 @@ fun RegisterPage(
 ) {
     Scaffold { innerPadding ->
         Column(modifier = Modifier
-            .padding(innerPadding),
+            .padding(innerPadding)
+            .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center) {
             Text(
                 text = "Register page"
             )
+
+            Button(onClick = {
+                navController.navigate(MainGraph.App)
+            }) {
+                Text(text = "Move to App screen")
+            }
         }
     }
 }

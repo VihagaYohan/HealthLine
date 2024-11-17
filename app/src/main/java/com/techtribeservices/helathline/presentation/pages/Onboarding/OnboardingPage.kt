@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun OnboardingPage(
-    navController: NavController,
+    navigateToLogin:() -> Unit,
     modifier: Modifier = Modifier
 ) {
     // state
@@ -33,7 +33,7 @@ fun OnboardingPage(
             // onboarding action items (Back, pagination indicators and Next / Done)
             OnboardingActions(
                 currentPage = pagerState.currentPage,
-                navController = navController,
+                navigateToLogin = navigateToLogin,
                 onBackClick = {
                     animationScope.launch {
                         if(pagerState.currentPage != 0) {
@@ -67,6 +67,6 @@ fun OnboardingPage(
 fun OnboardingPagePreview() {
 
     HelathLineTheme {
-        OnboardingPage(navController = rememberNavController())
+        OnboardingPage(navigateToLogin = {})
     }
 }

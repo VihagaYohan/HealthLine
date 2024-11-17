@@ -25,15 +25,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.techtribeservices.helathline.navigation.Screen
+//import com.techtribeservices.helathline.navigation.Screen
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 
 @Composable
 fun OnboardingActions(
     currentPage: Int,
-    navController: NavController,
     onBackClick:() -> Unit = {},
-    onProceedClick:() -> Unit = {}
+    onProceedClick:() -> Unit = {},
+    navigateToLogin:() -> Unit = {}
 ) {
     Row(
         modifier = Modifier
@@ -72,7 +72,8 @@ fun OnboardingActions(
         ) {
             Button(onClick = {
                 if(currentPage == 2) {
-                    navController.navigate(Screen.LoginScreen.route)
+                    //navController.navigate(Screen.AppScreen.route)
+                    navigateToLogin()
                 }else {
                     onProceedClick()
                 }
@@ -131,6 +132,6 @@ fun PageIndicator(currentPage: Int) {
 @Composable
 fun OnboardingActionsPreview() {
     HelathLineTheme {
-        OnboardingActions(currentPage = 1, navController = rememberNavController())
+        OnboardingActions(currentPage = 1)
     }
 }
