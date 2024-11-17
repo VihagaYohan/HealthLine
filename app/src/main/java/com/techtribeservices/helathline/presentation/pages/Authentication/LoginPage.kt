@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.techtribeservices.helathline.navigation.graph.AuthScreen
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 
 @Composable
@@ -27,11 +26,7 @@ fun LoginPage(
             Text(
                 text = "Login page"
             )
-            Button(onClick = {
-                navController.navigate(AuthScreen.register.route)
-            }) {
-                Text(text = "Go to register")
-            }
+
         }
     }
 }

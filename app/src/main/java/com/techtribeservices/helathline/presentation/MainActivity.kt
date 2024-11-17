@@ -4,22 +4,23 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBarItemDefaults
-import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaults
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.techtribeservices.helathline.navigation.graph.RootNavigationGraph
-import com.techtribeservices.helathline.presentation.pages.Home.HomePage
-
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.techtribeservices.helathline.navigation.destinations.Destinations
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 import dagger.hilt.android.AndroidEntryPoint
+
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -28,77 +29,91 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
-
-            val navigationSuiteItemColors = NavigationSuiteDefaults.itemColors(
-                navigationBarItemColors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.primary,
-                    selectedTextColor = MaterialTheme.colorScheme.primary,
-                    indicatorColor = MaterialTheme.colorScheme.primaryContainer,
-                    unselectedIconColor = if (isSystemInDarkTheme()) Color.White.copy(alpha = 0.8f) else Color.Gray.copy(
-                        alpha = 0.7f
-                    )
-                )
-            )
-
+            val navController = rememberNavController()
             HelathLineTheme {
-                RootNavigationGraph()
-//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    OnboardingPage(modifier = Modifier.padding(innerPadding))
-//                }
+                NavHost(
+                    navController = navController,
+                    startDestination = Destinations.Profile("Vihanga Yohan")
+                ) {
+                    composable<Destinations.Profile> { backStackEntry ->
+                        val profile: Destinations.Profile = backStackEntry.toRoute()
+                        Page1(
+                            profile = profile,
+                            navigate = {
+                                navController.navigate(route = Destinations.ProfileData(profile.name, age = 20))
+                            }
+                        )
+                    }
 
+                    composable<Destinations.FriendsList> {
+                        Page2(
+                            navigate = {
+                                navController.navigate(route = Destinations.Profile("John Doe"))
+                            }
+                        )
+                    }
 
-
-
-//                NavigationSuiteScaffold(
-//                    containerColor = MaterialTheme.colorScheme.background,
-//                    navigationSuiteColors = NavigationSuiteDefaults.colors(
-//                        navigationBarContainerColor = MaterialTheme.colorScheme.background,
-//                        navigationRailContainerColor = MaterialTheme.colorScheme.background
-//                    ),
-//                    navigationSuiteItems = {
-//                        AppDestinations.entries.forEach { it ->
-//                            item(
-//                                icon = {
-//                                    Icon(
-//                                        painter = painterResource(it.icon),
-//                                        contentDescription = stringResource(it.label)
-//                                    )
-//                                },
-//                                label = {
-//                                    Text(
-//                                        stringResource(it.label),
-//                                        style = MaterialTheme.typography.labelMedium.copy(
-//                                            fontWeight = FontWeight.Normal
-//                                        )
-//                                    )
-//                                },
-//                                selected = it == currentDestination,
-//                                onClick = { currentDestination = it },
-//                                alwaysShowLabel = false,
-//                                colors = navigationSuiteItemColors
-//                            )
-//                        }
-//                    }
-//                ) {
-//                    // navigation handles here
-//                    when (currentDestination) {
-//                        AppDestinations.Home -> HomePage()
-//                        AppDestinations.Appointment -> RegisterPage()
-//                        AppDestinations.Messages -> MessagesPage()
-//                        AppDestinations.Settings -> SettingsPage()
-//                    }
-//                }
+                    composable<Destinations.ProfileData> {backStackEntry ->
+                        val profile = backStackEntry.toRoute<Destinations.ProfileData>()
+                        Page3(
+                            profileData = profile,
+                            navigate = {
+                                navController.navigate(route = Destinations.FriendsList)
+                            }
+                        )
+                    }
+                }
             }
         }
+    }
+}
+
+@Composable
+fun Page1(
+    profile: Destinations.Profile,
+    navigate: () -> Unit,
+) {
+    Scaffold { innerPadding ->
+        val modifier = Modifier.padding(innerPadding)
+        Text(text = "Name: ${profile.name}",
+            modifier = modifier
+                .clickable {
+                    navigate()
+                })
+    }
+}
+
+@Composable
+fun Page2(navigate: () -> Unit) {
+    Scaffold { innerPadding ->
+        val modifier = Modifier.padding(innerPadding)
+        Text(text = "Friends List",
+            modifier = modifier
+                .clickable {
+                    navigate()
+                })
+    }
+}
+
+@Composable
+fun Page3(
+    profileData: Destinations.ProfileData,
+    navigate:() -> Unit) {
+    Scaffold { innerPadding ->
+        val modifier = Modifier.padding(innerPadding)
+        Text(text = "Profile details: ${profileData.name} - ${profileData.age}",
+            modifier = modifier
+                .clickable {
+                    navigate()
+                })
     }
 }
 
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun MainActivityPreview() {
     HelathLineTheme {
-        //HomePage(navController = rememberSaveable())
+
     }
 }
