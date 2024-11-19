@@ -17,4 +17,8 @@
     <string name="hi">Hi,</string>
     <string name="name">Vihanga Yohan</string>
 
+    <!--sub-titles-->
+    <string name="categories">Categories</string>
+    <string name='seeAll'>See All</string>
+
 </resources>

@@ -102,6 +102,6 @@ fun Banner() {
 @Composable
 fun CarouselPreview() {
     HelathLineTheme {
-        Carousel()
+        Banner()
     }
 }
