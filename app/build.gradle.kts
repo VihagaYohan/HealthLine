@@ -96,6 +96,9 @@ dependencies {
     // seriablization
     implementation(libs.kotlinx.serialization.json)
 
+    // material icons
+    implementation(libs.androidx.material.icons.extended)
+
 }
 
 // Allow references to generated code
