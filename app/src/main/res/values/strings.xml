@@ -22,4 +22,7 @@
     <string name="categories">Categories</string>
     <string name="popular">Popular</string>
 
+    <!--control labels-->
+    <string name="book">Book</string>
+
 </resources>

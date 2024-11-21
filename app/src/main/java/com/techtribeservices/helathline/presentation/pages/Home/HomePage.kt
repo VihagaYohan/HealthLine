@@ -101,5 +101,8 @@ fun DoctorsList(data: List<Doctor>) {
         .height(Constants.PADDING_LARGE))
     for(item in data) {
         DoctorItem(item)
+        Spacer(modifier = Modifier
+            .height(Constants.PADDING_LARGE)
+        )
     }
 }
