@@ -5,12 +5,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,6 +52,8 @@ fun HomePage(
         }
     ) { innerPadding ->
         val modifier = Modifier.padding(innerPadding)
+        val scrollState = rememberScrollState()
+
         Column(
             modifier = modifier
                 .fillMaxSize()
@@ -56,36 +61,24 @@ fun HomePage(
                     vertical = Constants.PADDING_EXTRA_LARGE,
                     horizontal = Constants.PADDING_MEDIUM
                 )
+                .verticalScroll(scrollState)
         ) {
-            LazyColumn() {
-                // banner
-                item {
-                    Banner()
-                }
+            Banner()
 
-                // sub-title container
-                item {
-                    Spacer(modifier = Modifier.height(Constants.PADDING_LARGE))
-                    SubTitleContainer(
-                        title = stringResource(id = R.string.categories),
-                        actionTitle = stringResource(R.string.seeAll)
-                    )
-                }
+            SubTitleContainer(
+                title = stringResource(id = R.string.categories),
+                actionTitle = stringResource(id = R.string.seeAll)
+            )
 
-                // category list
-                item {
-                    CategoryList()
-                }
+            CategoryList()
 
-                // doctors list
-                item {
-                    Spacer(modifier = Modifier.height(Constants.PADDING_LARGE))
-                    Log.d("TAG", uiState.value.toString())
-                    DoctorsList(data = uiState.value)
-                }
-            }
+            SubTitleContainer(
+                title = stringResource(id = R.string.popular),
+                actionTitle = stringResource(id = R.string.seeAll)
+            )
+
+            DoctorsList(data = uiState.value)
         }
-
     }
 }
 
@@ -104,9 +97,9 @@ fun CategoryList() {
 // doctors list component
 @Composable
 fun DoctorsList(data: List<Doctor>) {
-    LazyColumn {
-        items(data) {doctor ->
-            DoctorItem(doctor)
-        }
+    Spacer(modifier = Modifier
+        .height(Constants.PADDING_LARGE))
+    for(item in data) {
+        DoctorItem(item)
     }
 }
