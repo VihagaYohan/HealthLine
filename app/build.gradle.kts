@@ -99,6 +99,8 @@ dependencies {
     // material icons
     implementation(libs.androidx.material.icons.extended)
 
+    implementation(libs.accompanist.pager)
+
 }
 
 // Allow references to generated code
