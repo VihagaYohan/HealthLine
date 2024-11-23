@@ -75,7 +75,8 @@ fun OnboardingActions(
                     //navController.navigate(Screen.AppScreen.route)
                     navigateToLogin()
                 }else {
-                    onProceedClick()
+                    //onProceedClick()
+                    navigateToLogin()
                 }
             }) {
                 Text(text = if (currentPage == 2) "Done" else "Next")
