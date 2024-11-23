@@ -38,8 +38,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             HelathLineTheme {
-            //               RootNavigation()
-               MainPage(navController = rememberNavController())
+                RootNavigation()
+//               MainPage(navController = rememberNavController())
             }
         }
     }

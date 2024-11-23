@@ -54,6 +54,7 @@ import com.techtribeservices.helathline.data.model.Doctor
 import com.techtribeservices.helathline.data.model.mockData.doctorsList
 import com.techtribeservices.helathline.data.model.mockData.specialityList
 import com.techtribeservices.helathline.navigation.destinations.Destinations
+import com.techtribeservices.helathline.navigation.graph.MainGraph
 import com.techtribeservices.helathline.presentation.components.Banner
 import com.techtribeservices.helathline.presentation.components.CategoryItem
 import com.techtribeservices.helathline.presentation.components.DoctorItem
@@ -107,8 +108,6 @@ fun HomePage(
                 actionTitle = stringResource(id = R.string.seeAll)
             )
 
-            //DoctorsList(data = uiState.value)
-
             // upcoming appointments
             LazyRow(
                 modifier = Modifier
@@ -147,7 +146,11 @@ fun HomePage(
             ) {
                 items(3) {
                     val doctor = doctorsList[0]
-                    DoctorItem(data = doctor)
+                    DoctorItem(data = doctor, onClick = {
+                        Log.d(Constants.TAG, "item clicked")
+                        //navController.navigate(route = MainGraph.Secondary)
+                        navController.navigate(Destinations.DoctorDetails(doctorId = "11789"))
+                    })
                 }
             }
 
