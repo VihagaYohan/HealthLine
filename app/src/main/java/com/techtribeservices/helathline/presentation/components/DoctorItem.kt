@@ -102,7 +102,7 @@ fun DoctorItem(data: Doctor) {
                 ) {
                     CardDetails(data)
 
-                    BookService()
+                    //BookService()
                 }
             }
         }
