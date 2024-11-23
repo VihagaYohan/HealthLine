@@ -140,11 +140,15 @@ fun HomePage(
                 actionTitle = stringResource(id = R.string.seeAll)
             )
 
-            LazyRow {
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(Constants.PADDING_MEDIUM)
+            ) {
                 items(3) {
-
+                    DoctorItem(uiState.value[it])
                 }
             }
+
+            Spacer(modifier = Modifier.height(Constants.PADDING_LARGE))
         }
     }
 }
@@ -157,35 +161,6 @@ fun CategoryList() {
     ) {
         items(specialityList) { item ->
             CategoryItem(item)
-        }
-    }
-}
-
-// doctors list component
-@Composable
-fun DoctorsList(data: List<Doctor>) {
-    Spacer(
-        modifier = Modifier
-            .height(Constants.PADDING_LARGE)
-    )
-    for (item in data) {
-        DoctorItem(item)
-        Spacer(
-            modifier = Modifier
-                .height(Constants.PADDING_LARGE)
-        )
-    }
-}
-
-@Composable
-fun UpcomingAppointments() {
-    LazyRow(
-        modifier = Modifier
-            .fillMaxWidth(),
-        contentPadding = PaddingValues(end = Constants.PADDING_LARGE)
-    ) {
-        items(3) { item ->
-            UpcomingAppointmentItem()
         }
     }
 }
