@@ -3,7 +3,9 @@ package com.techtribeservices.helathline.presentation.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +20,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ElevatedCard
@@ -45,64 +48,66 @@ import com.techtribeservices.helathline.data.model.Doctor
 import com.techtribeservices.helathline.utils.Constants
 
 @Composable
-fun DoctorItem(data: Doctor) {
-    ElevatedCard(
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 1f)
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 2.dp
-        ),
+fun DoctorItem(
+    data: Doctor
+) {
+    val surnameInitial = data.surname.firstOrNull()?.uppercaseChar() ?: ""
+    Card(
         modifier = Modifier
-            .shadow(
-                elevation = 2.dp,
-                shape = RoundedCornerShape(Constants.PADDING_MEDIUM),
-                ambientColor = Color.Red,
-                spotColor = MaterialTheme.colorScheme.primary
-            ),
-        shape = RoundedCornerShape(2.dp)
+            .width(150.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.onTertiary
+        )
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(
-                    horizontal = Constants.PADDING_MEDIUM,
-                    vertical = Constants.PADDING_MEDIUM
-                ),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.Start
+            //.padding(vertical = Constants.PADDING_MEDIUM, horizontal = Constants.PADDING_MEDIUM)
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxSize(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
-            ) {
-                // thumbnail image
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(data.profileImage)
-                        .crossfade(true)
-                        .build(),
-                    contentDescription = "${data.fullName()}",
-                    contentScale = ContentScale.FillHeight,
+            // profile image
+            Box(modifier = Modifier
+                .fillMaxWidth()) {
+                AppImage(
+                    imageUrl = data.profileImage,
+                    contentDescription = stringResource(id = R.string.doctor_profile_image),
+                    contentScale = ContentScale.Inside,
                     modifier = Modifier
-                        .size(70.dp)
-                        .aspectRatio(1f)
-                        .align(Alignment.CenterVertically)
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.onPrimaryContainer)
+                        .fillMaxSize()
                 )
+            }
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    CardDetails(data)
+            Column(
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth()
+            ) {
+                // name
+                Text(text = "Dr. $surnameInitial. ${data.firstName} ${data.lastName} ",
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        fontWeight = FontWeight.W500,
+                        fontSize = 13.sp
+                    ),
+                    softWrap = true)
 
-                    //BookService()
+                // speciality
+                Text(text = "${data.speciality?.title}",
+                    style = MaterialTheme.typography.labelMedium.copy(
+                        fontWeight = FontWeight.W400,
+                        color = MaterialTheme.colorScheme.outline
+                    ))
+
+                Box(modifier = Modifier
+                    .align(Alignment.End)){
+                    Row {
+                        Image(
+                            painter = painterResource(R.drawable.star),
+                            contentDescription = stringResource(R.string.rating),
+                            modifier = Modifier
+                                .padding(end = 10.dp)
+                        )
+
+                        Text(text = "4.5",
+                            style = MaterialTheme.typography.labelLarge)
+                    }
                 }
             }
         }

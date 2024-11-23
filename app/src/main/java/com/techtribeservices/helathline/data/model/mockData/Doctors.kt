@@ -7,6 +7,14 @@ import com.techtribeservices.helathline.data.model.Speciality
 import com.techtribeservices.helathline.data.model.enums.UserRoles
 
 val doctorsList: List<Doctor> = listOf(
+    Doctor(
+        surname = "Daniels",
+        firstName = "John",
+        lastName = "Doe",
+        title = "Dr",
+        speciality = Speciality("","Cardiology", R.drawable.brain_solid, Timestamp.now(), UserRoles.ADMIN),
+        profileImage = "https://fzzypoxsybnlbgvtudxm.supabase.co/storage/v1/object/public/healthline/doctors/8.png",
+    )
 //    Doctor(
 //        "Doe",
 //        "John",

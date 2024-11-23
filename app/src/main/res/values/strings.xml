@@ -16,6 +16,7 @@
 
     <string name="hi">Hi,</string>
     <string name="name">Vihanga Yohan</string>
+    <string name="rating">Rating</string>
 
     <!--sub-titles-->
     <string name='seeAll'>See All</string>
@@ -25,5 +26,8 @@
 
     <!--control labels-->
     <string name="book">Book</string>
+
+    <!--image content description-->
+    <string name="doctor_profile_image">Doctor profile image</string>
 
 </resources>

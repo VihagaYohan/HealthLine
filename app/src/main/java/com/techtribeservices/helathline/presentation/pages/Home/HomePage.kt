@@ -51,7 +51,9 @@ import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import com.techtribeservices.helathline.R
 import com.techtribeservices.helathline.data.model.Doctor
+import com.techtribeservices.helathline.data.model.mockData.doctorsList
 import com.techtribeservices.helathline.data.model.mockData.specialityList
+import com.techtribeservices.helathline.navigation.destinations.Destinations
 import com.techtribeservices.helathline.presentation.components.Banner
 import com.techtribeservices.helathline.presentation.components.CategoryItem
 import com.techtribeservices.helathline.presentation.components.DoctorItem
@@ -144,7 +146,8 @@ fun HomePage(
                 horizontalArrangement = Arrangement.spacedBy(Constants.PADDING_MEDIUM)
             ) {
                 items(3) {
-                    DoctorItem(uiState.value[it])
+                    val doctor = doctorsList[0]
+                    DoctorItem(data = doctor)
                 }
             }
 
