@@ -9,4 +9,5 @@ sealed class MainGraph {
 
     @Serializable
     data object App: MainGraph()
+
 }
