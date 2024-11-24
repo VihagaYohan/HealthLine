@@ -101,6 +101,8 @@ dependencies {
 
     implementation(libs.accompanist.pager)
 
+    implementation(libs.androidx.graphics.shapes)
+
 }
 
 // Allow references to generated code

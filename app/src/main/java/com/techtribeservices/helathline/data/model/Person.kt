@@ -6,6 +6,7 @@ open class Person(
 //   @SerializedName("surname") open val surname:String = "",
 //   @SerializedName("firstName") open val firstName:String = "",
 //   @SerializedName("lastName") open val lastName:String = "",
+    var id: String = "",
     var surname:String = "",
     var firstName: String = "",
     var lastName: String = "") {

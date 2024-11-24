@@ -2,11 +2,12 @@ package com.techtribeservices.helathline.data.model
 
 
 data class Doctor(
-    private val title: String = "",
-    val speciality: Speciality? = null,
-    val profileImage: String = "",
-) : Person(surname = "", firstName = "", lastName = "") {
+    var title: String = "",
+    var speciality: Speciality? = null,
+    var profileImage: String = "",
+) : Person(id = "", surname = "", firstName = "", lastName = "") {
     constructor(
+        id: String,
         surname: String,
         firstName: String,
         lastName: String,
@@ -16,6 +17,7 @@ data class Doctor(
     ) : this(
         title, speciality, profileImage
     ) {
+        this.id = id
         this.surname = surname
         this.firstName = firstName
         this.lastName = lastName

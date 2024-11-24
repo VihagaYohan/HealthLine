@@ -23,9 +23,12 @@
     <string name="categories">Categories</string>
     <string name="popular">Popular</string>
     <string name="upcoming_appointments">Upcoming Appointments</string>
+    <string name="doctor_details">Doctor Details</string>
 
     <!--control labels-->
     <string name="book">Book</string>
+    <string name="back_button">Top navigation bar back button</string>
+    <string name="book_appointment">Book Appointment</string>
 
     <!--image content description-->
     <string name="doctor_profile_image">Doctor profile image</string>

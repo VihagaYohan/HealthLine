@@ -31,16 +31,29 @@ class DoctorRepository @Inject constructor(
     }
 
     // fetch all doctors from firestore
-    suspend fun getAllDoctors():MutableList<Doctor> {
+    suspend fun getAllDoctors(): MutableList<Doctor> {
         val doctorList: MutableList<Doctor> = mutableListOf()
         val doctorRef = firestore.collection(Collections.DOCTORS)
         doctorRef.get()
             .await()
-            .map {item ->
+            .map { item ->
                 val gson = Gson()
                 val json = gson.toJson(item.data)
-                val doctor = gson.fromJson(json,Doctor::class.java)
-                doctorList.add(doctor)
+                val doctor = gson.fromJson(json, Doctor::class.java)
+                val updatedDoctor = doctor.speciality?.let {
+                    Doctor(
+                        id = item.id,
+                        surname = doctor.surname,
+                        firstName = doctor.firstName,
+                        lastName = doctor.lastName,
+                        title = doctor.title,
+                        speciality = it,
+                        profileImage = doctor.profileImage,
+                    )
+                }
+                if (updatedDoctor != null) {
+                    doctorList.add(updatedDoctor)
+                }
             }
         return doctorList
     }

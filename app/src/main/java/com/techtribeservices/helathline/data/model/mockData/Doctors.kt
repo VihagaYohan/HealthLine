@@ -8,6 +8,7 @@ import com.techtribeservices.helathline.data.model.enums.UserRoles
 
 val doctorsList: List<Doctor> = listOf(
     Doctor(
+        id = "lPiknBzqp4UFikgvhwXk",
         surname = "Daniels",
         firstName = "John",
         lastName = "Doe",
