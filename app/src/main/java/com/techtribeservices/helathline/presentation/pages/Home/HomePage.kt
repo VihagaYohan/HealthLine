@@ -147,9 +147,8 @@ fun HomePage(
                 items(3) {
                     val doctor = doctorsList[0]
                     DoctorItem(data = doctor, onClick = {
-                        Log.d(Constants.TAG, "item clicked")
                         //navController.navigate(route = MainGraph.Secondary)
-                        navController.navigate(Destinations.DoctorDetails(doctorId = "11789"))
+                        navController.navigate(Destinations.DoctorDetails(doctorId = doctor.id))
                     })
                 }
             }
