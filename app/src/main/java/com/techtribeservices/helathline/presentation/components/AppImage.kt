@@ -23,7 +23,9 @@ fun AppImage(
     imageUrl: String,
     contentDescription: String,
     contentScale: ContentScale,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    width: Int = 100,
+    height: Int = 100
 ) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
@@ -33,8 +35,8 @@ fun AppImage(
         contentDescription = contentDescription,
         contentScale = contentScale,
         modifier = modifier
-            .width(400.dp)
-            .height(500.dp)
+            .width(width.dp)
+            .height(height.dp)
     )
 }
 
@@ -46,7 +48,9 @@ fun AppImagePreview() {
             imageUrl = "",
             contentDescription = stringResource(id = R.string.doctor_profile_image),
             contentScale = ContentScale.Crop,
-            modifier = Modifier
+            modifier = Modifier,
+            width = 100,
+            height = 100
         )
     }
 }
