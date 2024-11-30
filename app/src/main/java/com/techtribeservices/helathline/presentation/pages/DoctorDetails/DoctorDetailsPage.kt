@@ -92,7 +92,6 @@ fun ProfileImage() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(205.dp)
-                .border(1.dp, Color.Red)
         )
     }
 }
@@ -105,7 +104,6 @@ fun BackgroundShape() {
         modifier = Modifier
             .width(width)
             .height(height/2)
-            .border(2.dp, Color.Green)
     ) {
         val canvasWidth = size.width
         val canvasHeight = size.height
