@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -46,6 +47,8 @@ import com.techtribeservices.helathline.R
 import com.techtribeservices.helathline.presentation.components.AppButton
 import com.techtribeservices.helathline.presentation.components.AppImage
 import com.techtribeservices.helathline.presentation.components.AppNavigationBar
+import com.techtribeservices.helathline.presentation.components.AppSpacer
+import com.techtribeservices.helathline.presentation.components.AppStats
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 import com.techtribeservices.helathline.utils.Constants
 import com.techtribeservices.helathline.utils.ScreenSize
@@ -74,8 +77,14 @@ fun DoctorDetailsPage(
             }
         }
     ) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
+        val modifier = Modifier.padding(vertical = innerPadding.calculateTopPadding(), horizontal = Constants.PADDING_MEDIUM)
+        Column(modifier = modifier) {
             ProfileImage()
+
+            AppSpacer(isVertical = true, size = Constants.PADDING_MEDIUM)
+
+            // stats section
+            AppStats()
         }
     }
 }
