@@ -1,54 +1,41 @@
 package com.techtribeservices.helathline.presentation.pages.DoctorDetails
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.ClipOp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.PointMode
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.StrokeJoin
-import androidx.compose.ui.graphics.asComposePath
-import androidx.compose.ui.graphics.drawscope.DrawStyle
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipPath
-import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.graphics.shapes.CornerRounding
-import androidx.graphics.shapes.RoundedPolygon
-import androidx.graphics.shapes.toPath
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.google.firebase.annotations.concurrent.Background
 import com.techtribeservices.helathline.R
 import com.techtribeservices.helathline.presentation.components.AppButton
 import com.techtribeservices.helathline.presentation.components.AppImage
 import com.techtribeservices.helathline.presentation.components.AppNavigationBar
 import com.techtribeservices.helathline.presentation.components.AppSpacer
 import com.techtribeservices.helathline.presentation.components.AppStats
+import com.techtribeservices.helathline.presentation.pages.DoctorDetails.tabs.AboutTab
+import com.techtribeservices.helathline.presentation.pages.DoctorDetails.tabs.ReviewTab
+import com.techtribeservices.helathline.presentation.pages.DoctorDetails.tabs.ScheduleTab
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 import com.techtribeservices.helathline.utils.Constants
 import com.techtribeservices.helathline.utils.ScreenSize
@@ -58,6 +45,8 @@ fun DoctorDetailsPage(
     doctorId: String,
     navController: NavController
 ) {
+    var tabState = remember{ mutableStateOf(0)}
+
     Scaffold(
         topBar = {
             AppNavigationBar(
@@ -85,6 +74,30 @@ fun DoctorDetailsPage(
 
             // stats section
             AppStats()
+
+            // tabs (schedule, about, review)
+            TabRow(
+                selectedTabIndex = tabState.value,
+                modifier = Modifier
+                    .padding(top = Constants.PADDING_MEDIUM)
+            ) {
+                Constants.DOCTOR_DETAILS_TABS.forEachIndexed{index, item ->
+                    Tab(
+                        selected = tabState.value == index,
+                        onClick = {
+                            tabState.value = index
+                        },
+                        text = {
+                            Text(text = item)
+                        }
+                    )
+                }
+            }
+            when(tabState.value) {
+                0 -> ScheduleTab()
+                1 -> AboutTab()
+                2 -> ReviewTab()
+            }
         }
     }
 }

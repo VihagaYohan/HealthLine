@@ -9,4 +9,6 @@ object Constants {
     val PADDING_MEDIUM = 10.dp
     val PADDING_LARGE = 20.dp
     val PADDING_EXTRA_LARGE = 30.dp
+
+    val DOCTOR_DETAILS_TABS = listOf("Schedule","About", "Review")
 }
