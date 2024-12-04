@@ -79,7 +79,7 @@ fun DoctorDetailsPage(
             TabRow(
                 selectedTabIndex = tabState.value,
                 modifier = Modifier
-                    .padding(top = Constants.PADDING_MEDIUM)
+                    .padding(vertical = Constants.PADDING_MEDIUM)
             ) {
                 Constants.DOCTOR_DETAILS_TABS.forEachIndexed{index, item ->
                     Tab(
