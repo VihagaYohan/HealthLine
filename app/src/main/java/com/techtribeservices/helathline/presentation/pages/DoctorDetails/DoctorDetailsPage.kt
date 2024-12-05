@@ -54,7 +54,7 @@ fun DoctorDetailsPage(
             )
         },
         bottomBar = {
-            Row(modifier = Modifier
+           if(tabState.value == 0) Row(modifier = Modifier
                 .padding(Constants.PADDING_MEDIUM)
                 .fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center) {
@@ -63,7 +63,7 @@ fun DoctorDetailsPage(
                     onClick = {},
                     isPrimary = true
                 )
-            }
+            } else null
         }
     ) { innerPadding ->
         val modifier = Modifier.padding(vertical = innerPadding.calculateTopPadding(), horizontal = Constants.PADDING_MEDIUM)
