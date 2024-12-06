@@ -1,6 +1,7 @@
 package com.techtribeservices.helathline.presentation.pages.DoctorDetails.tabs
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
