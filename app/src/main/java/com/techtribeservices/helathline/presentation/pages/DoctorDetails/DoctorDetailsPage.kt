@@ -1,6 +1,8 @@
 package com.techtribeservices.helathline.presentation.pages.DoctorDetails
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,13 +11,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -39,13 +47,17 @@ import com.techtribeservices.helathline.presentation.pages.DoctorDetails.tabs.Sc
 import com.techtribeservices.helathline.ui.theme.HelathLineTheme
 import com.techtribeservices.helathline.utils.Constants
 import com.techtribeservices.helathline.utils.ScreenSize
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DoctorDetailsPage(
     doctorId: String,
     navController: NavController
 ) {
     var tabState = remember{ mutableStateOf(0)}
+    var bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
+    val scope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
@@ -54,7 +66,7 @@ fun DoctorDetailsPage(
             )
         },
         bottomBar = {
-            Row(modifier = Modifier
+           if(tabState.value == 0) Row(modifier = Modifier
                 .padding(Constants.PADDING_MEDIUM)
                 .fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center) {
@@ -63,11 +75,12 @@ fun DoctorDetailsPage(
                     onClick = {},
                     isPrimary = true
                 )
-            }
+            } else null
         }
     ) { innerPadding ->
         val modifier = Modifier.padding(vertical = innerPadding.calculateTopPadding(), horizontal = Constants.PADDING_MEDIUM)
-        Column(modifier = modifier) {
+        Column(modifier = modifier
+            .verticalScroll(rememberScrollState())) {
             ProfileImage()
 
             AppSpacer(isVertical = true, size = Constants.PADDING_MEDIUM)
@@ -75,8 +88,42 @@ fun DoctorDetailsPage(
             // stats section
             AppStats()
 
-            // tabs (schedule, about, review)
-            TabRow(
+
+            ModalBottomSheet(
+                onDismissRequest = {
+                    scope.launch {
+                        bottomSheetState.show()
+                    }
+                },
+                sheetState = bottomSheetState
+            ) {
+                // tabs (schedule, about, review)
+                Column {
+                    TabRow(
+                        selectedTabIndex = tabState.value,
+                        modifier = Modifier
+                            .padding(vertical = Constants.PADDING_MEDIUM)
+                    ) {
+                        Constants.DOCTOR_DETAILS_TABS.forEachIndexed{index, item ->
+                            Tab(
+                                selected = tabState.value == index,
+                                onClick = {
+                                    tabState.value = index
+                                },
+                                text = {
+                                    Text(text = item)
+                                }
+                            )
+                        }
+                    }
+                    when(tabState.value) {
+                        0 -> ScheduleTab()
+                        1 -> AboutTab()
+                        2 -> ReviewTab()
+                    }
+                }
+            }
+/*            TabRow(
                 selectedTabIndex = tabState.value,
                 modifier = Modifier
                     .padding(vertical = Constants.PADDING_MEDIUM)
@@ -97,7 +144,7 @@ fun DoctorDetailsPage(
                 0 -> ScheduleTab()
                 1 -> AboutTab()
                 2 -> ReviewTab()
-            }
+            }*/
         }
     }
 }
