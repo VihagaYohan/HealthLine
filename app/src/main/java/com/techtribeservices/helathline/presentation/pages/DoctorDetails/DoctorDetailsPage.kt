@@ -56,8 +56,6 @@ fun DoctorDetailsPage(
     navController: NavController
 ) {
     var tabState = remember{ mutableStateOf(0)}
-    var bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
-    val scope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
@@ -88,42 +86,8 @@ fun DoctorDetailsPage(
             // stats section
             AppStats()
 
-
-            ModalBottomSheet(
-                onDismissRequest = {
-                    scope.launch {
-                        bottomSheetState.show()
-                    }
-                },
-                sheetState = bottomSheetState
-            ) {
-                // tabs (schedule, about, review)
-                Column {
-                    TabRow(
-                        selectedTabIndex = tabState.value,
-                        modifier = Modifier
-                            .padding(vertical = Constants.PADDING_MEDIUM)
-                    ) {
-                        Constants.DOCTOR_DETAILS_TABS.forEachIndexed{index, item ->
-                            Tab(
-                                selected = tabState.value == index,
-                                onClick = {
-                                    tabState.value = index
-                                },
-                                text = {
-                                    Text(text = item)
-                                }
-                            )
-                        }
-                    }
-                    when(tabState.value) {
-                        0 -> ScheduleTab()
-                        1 -> AboutTab()
-                        2 -> ReviewTab()
-                    }
-                }
-            }
-/*            TabRow(
+            // tabs
+            TabRow(
                 selectedTabIndex = tabState.value,
                 modifier = Modifier
                     .padding(vertical = Constants.PADDING_MEDIUM)
@@ -144,7 +108,7 @@ fun DoctorDetailsPage(
                 0 -> ScheduleTab()
                 1 -> AboutTab()
                 2 -> ReviewTab()
-            }*/
+            }
         }
     }
 }
