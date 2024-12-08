@@ -29,6 +29,12 @@
     <string name="book">Book</string>
     <string name="back_button">Top navigation bar back button</string>
     <string name="book_appointment">Book Appointment</string>
+    <string name="schedule">Schedule</string>
+    <string name="about">About</string>
+    <string name="review">Review</string>
+    <string name="choose_hospital">Choose Hospital</string>
+    <string name="choose_date">Choose Date</string>
+    <string name="choose_time">Choose Time</string>
 
     <!--image content description-->
     <string name="doctor_profile_image">Doctor profile image</string>
