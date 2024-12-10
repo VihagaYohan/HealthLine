@@ -26,7 +26,8 @@ class AppointmentViewModel @Inject constructor(
     fun fetchAppointments() {
         viewModelScope.launch {
             try {
-
+                val appointmentList = appointmentRepository.getAllAppointments()
+                _uiState.value = appointmentList
             }catch(e: Exception) {
                 Log.e(Constants.TAG, "Error fetching appointments")
             }
