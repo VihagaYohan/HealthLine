@@ -18,12 +18,12 @@ import javax.inject.Inject
 class SeedDB @Inject constructor(
     private val firestore: FirebaseFirestore,
 ) {
-    private val batch = firestore.batch()
+    //private val batch = firestore.batch()
 
     // seed speciality collection
     fun seedSpeciality(): Unit {
         val specialityRef = firestore.collection(Collections.SPECIALITIES)
-
+        val batch = firestore.batch() // initialize batch
         specialityList.forEach { item ->
             val docRef = specialityRef.document()
             batch.set(docRef, item, SetOptions.merge())
@@ -83,8 +83,8 @@ class SeedDB @Inject constructor(
 
     // seed appointments collection
     fun seedAppointments(): Unit {
-        var listOfAppointments : MutableList<Appointment> = mutableListOf()
         var appointmentRef = firestore.collection(Collections.APPOINTMENTS)
+        val batch = firestore.batch()
 
         appointmentsList.forEach { appointment ->
             val appointmentDocRef = appointmentRef.document()
