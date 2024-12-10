@@ -8,7 +8,9 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.toObject
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.techtribeservices.helathline.data.model.Appointment
 import com.techtribeservices.helathline.data.model.Speciality
+import com.techtribeservices.helathline.data.model.mockData.appointmentsList
 import com.techtribeservices.helathline.data.model.mockData.doctorsList
 import com.techtribeservices.helathline.data.model.mockData.specialityList
 import javax.inject.Inject
@@ -16,12 +18,12 @@ import javax.inject.Inject
 class SeedDB @Inject constructor(
     private val firestore: FirebaseFirestore,
 ) {
-    val batch = firestore.batch()
+    //private val batch = firestore.batch()
 
     // seed speciality collection
     fun seedSpeciality(): Unit {
         val specialityRef = firestore.collection(Collections.SPECIALITIES)
-
+        val batch = firestore.batch() // initialize batch
         specialityList.forEach { item ->
             val docRef = specialityRef.document()
             batch.set(docRef, item, SetOptions.merge())
@@ -77,5 +79,24 @@ class SeedDB @Inject constructor(
                 }
             }
         Log.d(Constants.TAG, "list of speciality: ${listOfSpeciality.size}")
+    }
+
+    // seed appointments collection
+    fun seedAppointments(): Unit {
+        var appointmentRef = firestore.collection(Collections.APPOINTMENTS)
+        val batch = firestore.batch()
+
+        appointmentsList.forEach { appointment ->
+            val appointmentDocRef = appointmentRef.document()
+            batch.set(appointmentDocRef, appointment, SetOptions.merge())
+        }
+
+        batch.commit()
+            .addOnSuccessListener {
+                Log.d(Constants.TAG, "Appointments collection seeded successfully")
+            }
+            .addOnFailureListener {
+                Log.d(Constants.TAG, "Appointments collection seeding failed")
+            }
     }
 }

@@ -23,7 +23,7 @@ class SeedViewModel @Inject constructor(
 
     fun seedDB() {
         viewModelScope.launch {
-            seedDB.seedDoctors()
+            seedDB.seedAppointments()
         }
     }
 }
