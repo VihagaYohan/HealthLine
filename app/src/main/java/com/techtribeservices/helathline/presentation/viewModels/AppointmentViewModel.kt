@@ -3,6 +3,7 @@ package com.techtribeservices.helathline.presentation.viewModels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.techtribeservices.helathline.common.Response
 import com.techtribeservices.helathline.data.model.Appointment
 import com.techtribeservices.helathline.domain.repository.AppointmentRepository
 import com.techtribeservices.helathline.utils.Constants
@@ -16,7 +17,8 @@ class AppointmentViewModel @Inject constructor(
     private val appointmentRepository: AppointmentRepository,
     private val seedDB: SeedDB
 ): ViewModel(){
-    private val _uiState = MutableStateFlow<List<Appointment>>(emptyList())
+    //private val _uiState = MutableStateFlow<List<Appointment>>(emptyList())
+    private val _uiState = MutableStateFlow<Response>()
     val state = _uiState as StateFlow<List<Appointment>>
 
     init {
